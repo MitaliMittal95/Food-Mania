@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Trucks</title>
+    <link rel="stylesheet" href="{% static 'truckdetails/css/bootstrap.css' %}"></link>
+</head>
+<body class="bg-light">
+    <div class="container-fluid bg-light">
+        {% block content %} {% endblock content %}
+    </div>
+<script src="{% static 'truckdetails/js/jquery.js' %}"></script>
+<script src="{% static 'truckdetails/js/bootstrap.js' %}"></script>
+<script src="{% static 'truckdetails/js/popper.js' %}"></script>   
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#table tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+</script>
+</body>
+</html>

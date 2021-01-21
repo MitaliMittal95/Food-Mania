@@ -1,0 +1,56 @@
+{% extends 'truckdetails/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-3">
+        <h4 class="text-center alert alert-success">Add New Truck</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <center>
+            <input type="submit" class="btn btn-success" value="Add Details">
+            </center>
+        </form>
+        <br><br><br>
+        <center>
+        <a href="/map" class="btn btn-success">Click Here to View Location on Map</a>
+    </center>
+    </div>
+    <div class="col sm-9">
+        <h4 class="text-center alert alert-success">Show Truck Details</h4>
+        {% if truck %}
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <br>
+            <table class="table table-hover table-striped" id="table">
+                <thead> 
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Open Time</th>
+                        <th scope="col">Close Time</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tr in truck %}
+                    <tr>
+                        <td scope="row">{{tr.name}}</td>
+                        <td scope="row">{{tr.location}}</td>
+                        <td scope="row">{{tr.opentime}}</td>
+                        <td scope="row">{{tr.closetime}}</td>
+                        <td>
+                            <a href="{% url 'updatedata' tr.id %}" class="btn btn-success btn-sm">Edit</a>
+                            <form action="{% url 'deletedata' tr.id %}" method="POST" class="d-inline">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            <table>
+        {% else %}
+        <h4 class="text-center alert alert-warning">No Record Found</h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'truckdetails/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-8 offset-2">
+        <h4 class="alert alert-success">Update Food Truck Information</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}   
+            <center>
+            <a href="{% url 'addandshow'%}" class="btn btn-info">Back</a>
+            <input type="submit" class ="btn btn-success ml-4" value="Update">
+            <center>
+        </form>
+    </div>
+</div>
+{% endblock content %}
